@@ -1,6 +1,10 @@
 <template>
   <div class="login-container">
-    <van-nav-bar title="登录" class="page-nav-bar" />
+    <van-nav-bar title="登录" class="page-nav-bar">
+      <template #left>
+        <van-icon name="cross" color="#fff" @click="$router.push('/my')" />
+      </template>
+    </van-nav-bar>
     <van-form @submit="onSubmit" ref="from">
       <van-field
         v-model="user.mobile"
@@ -96,7 +100,9 @@ export default {
       // 只有promise成功了的情况下才会继续执行
       try {
         const res = await onSubmit(this.user);
+        this.$store.commit("getUser", res.data.data);
         Toast.success("登录成功");
+        this.$router.push("/");
       } catch (e) {
         console.log(e);
         Toast.fail(e?.response?.data?.message || "服务器错误");

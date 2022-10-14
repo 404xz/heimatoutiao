@@ -6,11 +6,7 @@ import "@/styles/index.less";
 import vant from "@/plugins/vant.js";
 import "vant/lib/index.less";
 import "amfe-flexible";
-import request from "@/utils/request";
-
-request.get("v1_0/channels").then((res) => {
-  console.log(res.data.data.channels);
-});
+import "@/utils/dayjs.js";
 
 import ToutiaoIcon from "@/components/ToutiaoIcon.vue";
 Vue.component("ToutiaoIcon", ToutiaoIcon);
